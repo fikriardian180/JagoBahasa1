@@ -17,8 +17,21 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('role')->default('student'); // admin|lecturer|student|staff|guest
+            $table->unsignedBigInteger('institution_id')->nullable();
+            $table->string('student_number')->nullable();
+            $table->boolean('is_institutional')->default(false);
+            $table->boolean('is_active')->default(true);
+            $table->integer('xp_points')->default(0);
+            $table->integer('current_streak')->default(0);
+            $table->integer('longest_streak')->default(0);
+            $table->date('last_active_date')->nullable();
+            $table->string('locale')->default('id'); // id|en
+            $table->boolean('show_on_leaderboard')->default(true);
+            $table->json('accessibility_prefs')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
