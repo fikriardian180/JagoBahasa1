@@ -1,3 +1,68 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    :root {
+        --bg-canvas: #F8FAFC;
+        --bg-surface: #FFFFFF;
+        --text-primary: #0F172A;
+        --text-secondary: #475569;
+        --brand-primary: #1E3A8A;
+        --brand-accent: #D97706;
+        --semantic-success: #047857;
+        --semantic-warning: #B45309;
+        --semantic-danger: #BE123C;
+        --border-subtle: #E2E8F0;
+    }
+
+    html.theme-high-contrast {
+        --bg-canvas: #09090B;
+        --bg-surface: #18181B;
+        --text-primary: #FFFFFF;
+        --text-secondary: #E4E4E7;
+        --brand-primary: #38BDF8;
+        --brand-accent: #FACC15;
+        --semantic-success: #4ADE80;
+        --semantic-warning: #FBBF24;
+        --semantic-danger: #FB7185;
+        --border-subtle: #52525B;
+    }
+
+    body {
+        background-color: var(--bg-canvas);
+        color: var(--text-primary);
+        font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    body.font-dyslexic {
+        font-family: 'OpenDyslexic', 'Comic Sans MS', sans-serif !important;
+        letter-spacing: 0.05em;
+        word-spacing: 0.12em;
+    }
+
+    html.reduce-motion *,
+    html.reduce-motion *::before,
+    html.reduce-motion *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Skip link focus accessibility */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--brand-primary);
+    color: white;
+    padding: 8px;
+    z-index: 100;
+    transition: top 0.2s;
+}
+
+.skip-link:focus {
+    top: 0;
+}
